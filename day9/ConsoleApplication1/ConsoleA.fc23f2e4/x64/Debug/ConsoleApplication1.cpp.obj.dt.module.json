@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "ConsoleA.fc23f2e4\\x64\\Debug\\ConsoleApplication1.obj",
+            "outputs": [
+                "ConsoleA.fc23f2e4\\x64\\Debug\\ConsoleApplication1.cpp.obj.dt.module.json",
+                "ConsoleA.fc23f2e4\\x64\\Debug\\ConsoleApplication1.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}

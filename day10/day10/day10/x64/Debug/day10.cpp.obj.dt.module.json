@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "day10\\x64\\Debug\\day10.obj",
+            "outputs": [
+                "day10\\x64\\Debug\\day10.cpp.obj.dt.module.json",
+                "day10\\x64\\Debug\\day10.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}

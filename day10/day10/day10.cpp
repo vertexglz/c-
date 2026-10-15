@@ -1,24 +1,26 @@
 ﻿#include <iostream>
 #include <vector>
 #include <cstddef>
+#include <optional>
 
 
 struct Stats {
-    int sum;
+    int sum = 0;
     int minVal;
     int maxVal;
-    int evenCount;
-    double avg;
+    int evenCount = 0;
+    double avg = 0.0;
+    int negativeCount = 0;
 };
 
-Stats calculateResults(const std::vector <int>& numbers) {
+std::optional<Stats> calculateResults(const std::vector <int>& numbers) {
+    if (numbers.empty()) {
+        return std::nullopt;
+    }
+
     Stats result;
-    result.sum = 0;
     result.minVal = numbers[0];
     result.maxVal = numbers[0];
-    result.evenCount = 0;
-    result.avg = 0;
-
     for (std::size_t i = 0; i < numbers.size();i++) {
         result.sum += numbers[i];
 
@@ -31,24 +33,32 @@ Stats calculateResults(const std::vector <int>& numbers) {
         if (numbers[i] % 2 == 0) {
             result.evenCount++;
         }
+        if (numbers[i] < 0) {
+            result.negativeCount++;
+        }
     }
     result.avg = static_cast<double> (result.sum) / numbers.size();
     return result;
 }
 
 int main() {
-    std::vector<int> numbers = { 3, 8, 12, 7, 15, 20, 21, 24 };
-    if (numbers.empty()) {
-        std::cout << "No numbers to analyze" << '\n';
-        return 0;
-    }
-    Stats result = calculateResults(numbers);
+    std::vector<int> numbers;
     
-    std::cout << result.sum << '\n';
-    std::cout << result.minVal << '\n';
-    std::cout << result.maxVal << '\n';
-    std::cout << result.evenCount << '\n';
-    std::cout << result.avg << '\n';
+    std::optional<Stats> result = calculateResults(numbers);
+    if (result.has_value()) {
+        Stats stats = result.value();
+        std::cout << stats.sum << '\n';
+        std::cout << stats.minVal << '\n';
+        std::cout << stats.maxVal << '\n';
+        std::cout << stats.evenCount << '\n';
+        std::cout << stats.avg << '\n';
+        std::cout << stats.negativeCount << '\n';
+    }
+    else {
+        std::cout << "Cannot calculate statistics: empty vector\n";
+    }
+    
+    
 
     return 0;
 }
